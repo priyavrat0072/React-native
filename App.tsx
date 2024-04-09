@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Button,
   Text,
@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 // import CompanyData from './components/CompanyData';
 // import UserData from './components/UserData';
-import Exstyles from './style';
-import Student from './components/Student';
+// import Exstyles from './style';
+// import Student from './components/Student';
 
 // const name = "anil";
 // let email =  "abc@gmail.com" ;
@@ -716,31 +716,145 @@ import Student from './components/Student';
 // }
 
 // V19
-class App extends React.Component {
-  constructor(){
-    super();
-    this.state ={
-      name:"Anil"
-      
-    }
-  }
-  updateName=(val: string)=>{
-    this.setState({name:val})
-  }
-  render() {
-    return (
-      <View>
-        <Text style={{fontSize:30,color:'red'}}>{this.state.name}</Text>
-        <TextInput
-          placeholder='Enter Name'
-          onChangeText={(text)=>this.updateName(text)}
-        />
+// class App extends React.Component {
+//   constructor(){
+//     super();
+//     this.state ={
+//       name:"Anil"
 
-        <Button title='Press Me' ></Button>
-        <Student name ={this.state.name}/>
-      </View>
-    );
-  }
-}
+//     }
+//   }
+//   updateName=(val: string)=>{
+//     this.setState({name:val})
+//   }
+//   render() {
+//     return (
+//       <View>
+//         <Text style={{fontSize:30,color:'red'}}>{this.state.name}</Text>
+//         <TextInput
+//           placeholder='Enter Name'
+//           onChangeText={(text)=>this.updateName(text)}
+//         />
+
+//         <Button title='Press Me' ></Button>
+//         <Student name ={this.state.name}/>
+//       </View>
+//     );
+//   }
+// }
+
+// V23
+// const App=()=>{
+//   const[count,setCount] = useState(0)
+//   useEffect(()=>{
+//     console.warn("hello")
+//   },[])
+//   return(
+//     <View>
+//       <Text style={{fontSize:30}}>Use Effect Hook</Text>
+//       <Text style={{fontSize:30}}>{count}</Text>
+//       <Button title='UpdateCount' onPress={()=>setCount(count+1)}></Button>
+//     </View>
+//   )
+// }
+
+// v24
+// const App = () => {
+//   const [count, setCount] = useState(0);
+//   const [data, setData] = useState(100);
+//   // useEffect(()=>{console.warn("count")},[count])
+//   // useEffect(()=>{console.warn("data")},[data])
+//   return (
+//     <View>
+//       <Text style={{fontSize: 30}}>Component Did Mount</Text>
+//       {/* <Text style={{fontSize:30}}>{count}</Text>
+//       <Text style={{fontSize:30}}>{data}</Text> */}
+//       <Button
+//         title="update Counter"
+//         onPress={() => setCount(count + 1)}></Button>
+//       <Button title="update data" onPress={() => setData(data + 5)}></Button>
+//       <User data={data} count={count} />
+//     </View>
+//   );
+// };
+
+// const User = (props: { data: number; count: number; }) => {
+//   // console.warn(props)
+//   useEffect(() => {
+//     console.warn('child Data');
+//   }, [props.data]);
+//   useEffect(() => {
+//     console.warn('child Count');
+//   }, [props.count]);
+//   return (
+//     <View>
+//       <Text style={{fontSize: 30, color: 'orange'}}>User Component</Text>
+//       <Text style={{fontSize: 30, color: 'orange'}}>{props.count}</Text>
+//       <Text style={{fontSize: 30, color: 'orange'}}>{props.data}</Text>
+//     </View>
+//   );
+// };
+
+// V25
+// const App =()=>{
+//   const [show,setShow] = useState(true)
+//   const toggle =()=>{
+//     if(show){
+//       setShow(false)
+//     }else{
+//       setShow(true)
+//     }
+//   }
+//   return(
+//     <View>
+//       <Text style={{fontSize:20}}>Show, Hide ,Toggle</Text>
+//       {/* <Button title='Hide' onPress={()=>setShow(false)}></Button>
+//       <Button title='Show' onPress={()=>setShow(true)}></Button> */}
+//       <Button title='Toggle' onPress={toggle}></Button>
+//       {
+//         show?<User/>:null
+//       }
+//     </View>
+//   )
+// }
+
+// const User =()=>{
+//   return(
+//     <View>
+//       <Text style={{fontSize:20,color:'blue'}}>User Component</Text>
+//     </View>
+//   )
+// }
+
+// V26
+// const App = () => {
+//   const [toggle,setToggle] = useState(true)
+//   return (
+//     <View>
+//       <Text style={{fontSize: 25}}>Component Unmount</Text>
+//       <Button title='Toggle' onPress={()=>setToggle(!toggle)}></Button>
+//       {
+//         toggle?<Student/>:null
+//       }
+//     </View>
+//   );
+// };
+
+// const Student =()=>{
+
+//   let timer = setInterval(()=>{
+//     console.warn("INTERVAL")
+//   },2000)
+
+//   // useEffect(()=>{
+//   //   return ()=> clearInterval(timer)
+//   // })
+//   // useEffect(()=>{clearInterval(timer)})
+//   return(
+//     <View>
+//       <Text style={{fontSize: 25}}>Student Component</Text>
+//     </View>
+//   )
+// }
 
 export default App;
