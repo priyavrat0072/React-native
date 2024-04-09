@@ -12,6 +12,7 @@ import {
 // import CompanyData from './components/CompanyData';
 // import UserData from './components/UserData';
 import Exstyles from './style';
+import Student from './components/Student';
 
 // const name = "anil";
 // let email =  "abc@gmail.com" ;
@@ -641,12 +642,9 @@ import Exstyles from './style';
 //       }
 //       />
 
-      
 //     </View>
-//   ) 
+//   )
 // };
-
-
 
 // const styles = StyleSheet.create({
 //   item:{
@@ -667,45 +665,82 @@ import Exstyles from './style';
 // })
 
 // V18
-const App =()=>{
+// const App =()=>{
 
-  const users =[
-    {
-      id:1,
-      name:'anil',
-      data:["PHP","React js","Angular"]
-    },
-    {
-      id:2,
-      name:'peter',
-      data:["node","js","Rust"]
-    },
-    {
-      id:3,
-      name:'Max',
-      data:["c","c++","py"]
-    },
-    {
-      id:4,
-      name:'sam',
-      data:["golaang","boots","java"]
+//   const users =[
+//     {
+//       id:1,
+//       name:'anil',
+//       data:["PHP","React js","Angular"]
+//     },
+//     {
+//       id:2,
+//       name:'peter',
+//       data:["node","js","Rust"]
+//     },
+//     {
+//       id:3,
+//       name:'Max',
+//       data:["c","c++","py"]
+//     },
+//     {
+//       id:4,
+//       name:'sam',
+//       data:["golaang","boots","java"]
+//     }
+//   ]
+
+//  return(
+//   <View>
+//   <Text style={{fontSize:25}}>Section List</Text>
+//   <SectionList
+//   sections={users}
+//   renderItem={({item})=><Text style={{fontSize:20,marginLeft:20}}>{item}</Text>}
+//   renderSectionHeader={({section:{name}})=>(
+//     <Text style={{fontSize:25,color:'red'}}>
+//       {name}
+//     </Text>
+//  )
+//   }
+//   />
+// </View>
+//  )
+// }
+
+// const App =()=>{
+//   return(
+//     <View>
+//       <Text></Text>
+//     </View>
+//   )
+// }
+
+// V19
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state ={
+      name:"Anil"
+      
     }
-  ]
-
- return(
-  <View>
-  <Text style={{fontSize:25}}>Section List</Text>
-  <SectionList
-  sections={users}
-  renderItem={({item})=><Text style={{fontSize:20,marginLeft:20}}>{item}</Text>}
-  renderSectionHeader={({section:{name}})=>(
-    <Text style={{fontSize:25,color:'red'}}>
-      {name}
-    </Text>
- )
   }
-  />
-</View>
- )
+  updateName=(val: string)=>{
+    this.setState({name:val})
+  }
+  render() {
+    return (
+      <View>
+        <Text style={{fontSize:30,color:'red'}}>{this.state.name}</Text>
+        <TextInput
+          placeholder='Enter Name'
+          onChangeText={(text)=>this.updateName(text)}
+        />
+
+        <Button title='Press Me' ></Button>
+        <Student name ={this.state.name}/>
+      </View>
+    );
+  }
 }
+
 export default App;
