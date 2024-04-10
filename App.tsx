@@ -8,6 +8,13 @@ import {
   FlatList,
   ScrollView,
   SectionList,
+  TouchableHighlight,
+  TouchableOpacity,
+  ActivityIndicator,
+  Modal,
+  Pressable,
+  StatusBar,
+  Platform,
 } from 'react-native';
 // import CompanyData from './components/CompanyData';
 // import UserData from './components/UserData';
@@ -856,5 +863,409 @@ import {
 //     </View>
 //   )
 // }
+// V27
+// const App =()=>{
+//   return(
+//     <View style={styles.main}>
+//       {/* <Text>Responsive UI with Flex</Text> */}
+//       <View style={styles.box1}>
+//         <View style={styles.innerbox1}></View>
+//         <View style={styles.innerbox2}></View>
+//         <View style={styles.innerbox3}></View>
+//       </View>
+//       <View style={styles.box2}></View>
+//       <View style={styles.box3}></View>
+
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   main:{
+//     flex:1,
+
+//   },
+//   box1:{
+//     flex:1,backgroundColor:'red',
+//     flexDirection:'row'
+//   },
+//   box2:{
+//     flex:1,backgroundColor:'blue'
+//   },
+//   box3:{
+//     flex:1,backgroundColor:'yellow'
+//   },
+//   innerbox1:{
+//     flex:1,backgroundColor:'pink',
+//     margin:10
+//   },
+//   innerbox2:{
+//     flex:1,backgroundColor:'skyblue',
+//     margin:10
+//   },
+//   innerbox3:{
+//     flex:1,backgroundColor:'green',
+//     margin:10
+//   },
+// })
+
+// const App =()=>{
+//   return(
+//     <View style={styles.main}>
+//       <TouchableHighlight>
+//         <Text style={styles.btn}>Button</Text>
+//       </TouchableHighlight>
+//       <TouchableHighlight>
+//         <Text style={[styles.btn,styles.sucess]}>Sucess</Text>
+//       </TouchableHighlight>
+//       <TouchableHighlight>
+//         <Text style={[styles.btn,styles.primary]}>Primary</Text>
+//       </TouchableHighlight>
+//       <TouchableHighlight>
+//         <Text style={[styles.btn,styles.warning]}>Warning</Text>
+//       </TouchableHighlight>
+//       <TouchableHighlight>
+//         <Text style={[styles.btn,styles.error]}>Error</Text>
+//       </TouchableHighlight>
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   main:{
+//     flex:1,
+//     flexDirection:'row',
+//     flexWrap:'wrap'
+//   },
+//   btn:{
+
+//     backgroundColor:"#bbb",
+//     color:"#fff",
+//     fontSize:24,
+//     textAlign:'center',
+//     padding:5,
+//     margin:5,
+//     borderRadius:10,
+//     shadowColor:'black',
+//     elevation:10,
+//     shadowOpacity:1,
+//     width:100
+//   },
+//   sucess:{
+//     backgroundColor:'green'
+//   },
+//   primary:{
+//     backgroundColor:'blue'
+//   },
+//   warning:{
+//     backgroundColor:'orange'
+//   },
+//   error:{
+//     backgroundColor:'red'
+//   },
+// })
+// const App = () => {
+
+//   const [selectedRadio,setSelectedRadio] =useState(1)
+
+//   return (
+//     <View style={styles.main}>
+//       {/* <Text> Static Radio Button</Text> */}
+//       <TouchableOpacity onPress={()=>setSelectedRadio(1)}>
+//         <View style={styles.radioWarp}>
+//           <View style={styles.radio}>
+//             {
+//               selectedRadio === 1?<View style={styles.radiobg}></View>:null
+//             }
+//           </View>
+//           <Text style={styles.radiotext}>Radio 1</Text>
+//         </View>
+//       </TouchableOpacity>
+//       <TouchableOpacity onPress={()=>setSelectedRadio(2)}>
+//         <View style={styles.radioWarp}>
+//           <View style={styles.radio}>
+//           {
+//               selectedRadio === 2?<View style={styles.radiobg}></View>:null
+//             }
+//           </View>
+//           <Text style={styles.radiotext}>Radio 2</Text>
+//         </View>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   main: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   radiotext: {
+//     fontSize: 20,
+//   },
+//   radio: {
+//     height: 40,
+//     width: 40,
+//     borderColor: 'black',
+//     borderWidth: 2,
+//     borderRadius: 20,
+//     margin: 10,
+//   },
+//   radioWarp: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//   },
+//   radiobg:{
+//     backgroundColor:'blue',
+//     height:28,
+//     width:28,
+//     borderRadius:20,
+//     margin:4,
+//   }
+// });
+
+// V30
+// const App =()=>{
+//   const skills = [
+//       {
+//         id:1,
+//         name:'JAVA'
+//       },
+//       {
+//         id:2,
+//         name:'lang'
+//       },
+//       {
+//         id:3,
+//         name:'Node'
+//       },
+//       {
+//         id:4,
+//         name:'c++'
+//       },
+//       {
+//         id:5,
+//         name:'Rust'
+//       },
+//   ]
+//   const [selectedRadio,setSelectedRadio] = useState(0) 
+//   return(
+//     <View style={styles.main}>
+//       {/* <Text>Dynamic Radio Button</Text> */}
+//       {
+//         skills.map((item,index)=><TouchableOpacity
+//         key={index}
+//         onPress={()=>setSelectedRadio(item.id)} 
+//         >
+//         <View style={styles.radioWarp}>
+//           <View style={styles.radio}>
+//             {
+//               selectedRadio == item.id ?<View style={styles.radiobg}></View>:null
+//             }
+//           </View>
+//           <Text style={styles.radiotext}>{item.name}</Text>
+//         </View>
+//       </TouchableOpacity>
+        
+//         )
+//       }
+      
+//     </View>
+//   )
+// }
+// const styles = StyleSheet.create({
+//   main: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   radiotext: {
+//     fontSize: 20,
+//   },
+//   radio: {
+//     height: 40,
+//     width: 40,
+//     borderColor: 'black',
+//     borderWidth: 2,
+//     borderRadius: 20,
+//     margin: 10,
+//   },
+//   radioWarp: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//   },
+//   radiobg:{
+//     backgroundColor:'blue',
+//     height:28,
+//     width:28,
+//     borderRadius:20,
+//     margin:4,
+//   }
+// });
+
+// V31 Activity Indicator
+// const App=()=>{
+//   const [show,setShow] = useState(false)
+//   const display =()=>{
+//     setShow(true)
+//     setTimeout(()=>{setShow(false)},3000)
+    
+//   }
+//   return(
+//     <View style={styles.main}>
+//       <ActivityIndicator size='large' color='red' animating={show}></ActivityIndicator>
+//       <Button title='loader' onPress={()=>display()}></Button>
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   main:{
+//     flex:1,
+//     alignItems:'center',
+//     justifyContent:'center'
+
+//   }
+// })
+
+// V32 Modal Dailouge box
+
+// const App=()=>{
+//   const [show,setShow] = useState(false)
+//   return(
+//     <View style={styles.main}>
+//       <Modal
+//       transparent={true}
+//       visible = {show}
+//       animationType='fade'
+//       >
+//         <View style={styles.cent}>
+//           <View style={styles.wrap}>
+//             <Text style={styles.text}>Hello World</Text>
+//             <Button title='close' onPress={()=>setShow(false)}></Button>
+//           </View>
+//         </View>
+//       </Modal>
+//       <View style={styles.btnView}>
+//       <Button title='Open Modal' onPress={()=>setShow(true)}></Button>
+//       </View>
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   main:{
+//     flex:1,
+//   },
+//   btnView:{
+//     flex:1,
+//     justifyContent:'flex-end'
+//   },
+//   cent:{
+//     flex:1,
+//     justifyContent:'center',
+//     alignItems:'center',
+    
+//   },
+//   wrap:{
+//     backgroundColor:'white',
+//     padding:30,
+//     borderRadius:20,
+//     shadowColor:'black',
+//     elevation:5
+//   },
+//   text:{
+//     fontSize:35,
+
+//   }
+// })
+
+// V33
+// const App = ()=>{
+//   return(
+//     <View style={styles.main}>
+//       <Pressable
+//       // onPress={()=>console.warn("normal on press")}
+//       // onLongPress={()=>console.warn("Long Press")} //500ms
+//       onPressIn={()=>console.warn("press In")}
+//       onPressOut={()=>console.warn("press out")}
+//       >
+//         <Text style={styles.pressableBtn}>Pressable</Text>
+//       </Pressable>
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   main:{
+//     flex:1,
+//     justifyContent:'center'
+//   },
+//   pressableBtn:{
+//     backgroundColor:'skyblue',
+//     color:'#fff',
+//     padding:10,
+//     margin:10,
+//     borderRadius:10,
+//     fontSize:20,
+//     textAlign:'center',
+//     shadowColor:'#000',
+//     elevation:5
+//   }
+// })
+
+// V34
+// const App =()=>{
+//   const [toggle,setToggle] = useState(false)
+//   const [barStyle,setBarStyle] = useState('default')
+//   return(
+//     <View style={styles.container}>
+//       <Text>Status Bar</Text>
+//       <StatusBar backgroundColor={'orange'}
+//       barStyle={barStyle}
+//       hidden={toggle}
+//       >
+
+//       </StatusBar>
+//       <Button title='Toggle Status Bar' onPress={()=>setToggle(!toggle)}></Button>
+//       <Button title='update Style' onPress={()=>setBarStyle('dark-content')}></Button>
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   container:{
+//     flex:1,
+//     justifyContent:'center'
+//   }
+// })
+
+
+const App=()=>{
+  return(
+    <View>
+      <Text style={{fontSize:30}}>PlatForm: {Platform.OS}</Text>
+      {
+        Platform.OS == "ios"?
+        <View style={{backgroundColor:'red',height:100,width:100}}></View>
+        :
+        <View style={{backgroundColor:'green',height:100,width:100}}></View>
+      }
+      <Text style={styles.text}>Hello</Text>
+      <ScrollView>
+      <Text style={styles.text} >{JSON.stringify(Platform.constants.reactNativeVersion.minor)}</Text>
+      </ScrollView>
+      
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  text:{
+    color:Platform.OS == "ios"?'orange':'blue',
+    fontSize:30
+  }
+})
 
 export default App;
