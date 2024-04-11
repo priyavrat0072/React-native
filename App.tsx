@@ -16,6 +16,11 @@ import {
   StatusBar,
   Platform,
 } from 'react-native';
+
+import {WebView} from 'react-native-webview';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 // import CompanyData from './components/CompanyData';
 // import UserData from './components/UserData';
 // import Exstyles from './style';
@@ -1049,14 +1054,14 @@ import {
 //         name:'Rust'
 //       },
 //   ]
-//   const [selectedRadio,setSelectedRadio] = useState(0) 
+//   const [selectedRadio,setSelectedRadio] = useState(0)
 //   return(
 //     <View style={styles.main}>
 //       {/* <Text>Dynamic Radio Button</Text> */}
 //       {
 //         skills.map((item,index)=><TouchableOpacity
 //         key={index}
-//         onPress={()=>setSelectedRadio(item.id)} 
+//         onPress={()=>setSelectedRadio(item.id)}
 //         >
 //         <View style={styles.radioWarp}>
 //           <View style={styles.radio}>
@@ -1067,10 +1072,10 @@ import {
 //           <Text style={styles.radiotext}>{item.name}</Text>
 //         </View>
 //       </TouchableOpacity>
-        
+
 //         )
 //       }
-      
+
 //     </View>
 //   )
 // }
@@ -1110,7 +1115,7 @@ import {
 //   const display =()=>{
 //     setShow(true)
 //     setTimeout(()=>{setShow(false)},3000)
-    
+
 //   }
 //   return(
 //     <View style={styles.main}>
@@ -1166,7 +1171,7 @@ import {
 //     flex:1,
 //     justifyContent:'center',
 //     alignItems:'center',
-    
+
 //   },
 //   wrap:{
 //     backgroundColor:'white',
@@ -1241,31 +1246,128 @@ import {
 //   }
 // })
 
+// const App=()=>{
+//   return(
+//     <View>
+//       <Text style={{fontSize:30}}>PlatForm: {Platform.OS}</Text>
+//       {
+//         Platform.OS == "ios"?
+//         <View style={{backgroundColor:'red',height:100,width:100}}></View>
+//         :
+//         <View style={{backgroundColor:'green',height:100,width:100}}></View>
+//       }
+//       <Text style={styles.text}>Hello</Text>
+//       <ScrollView>
+//       <Text style={styles.text} >{JSON.stringify(Platform.constants.reactNativeVersion.minor)}</Text>
+//       </ScrollView>
 
-const App=()=>{
-  return(
-    <View>
-      <Text style={{fontSize:30}}>PlatForm: {Platform.OS}</Text>
-      {
-        Platform.OS == "ios"?
-        <View style={{backgroundColor:'red',height:100,width:100}}></View>
-        :
-        <View style={{backgroundColor:'green',height:100,width:100}}></View>
-      }
-      <Text style={styles.text}>Hello</Text>
-      <ScrollView>
-      <Text style={styles.text} >{JSON.stringify(Platform.constants.reactNativeVersion.minor)}</Text>
-      </ScrollView>
-      
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   text:{
+//     color:Platform.OS == "ios"?'orange':'blue',
+//     fontSize:30
+//   }
+// })
+
+// V37
+// const App = ()=>{
+//   return(
+//     <WebView source={{uri:"https://reactnative.dev/"}}/>
+
+//   )
+// }
+
+// V38
+// const App=()=>{
+//   const [show,setShow]  = useState(false)
+//   return(
+//     <View style={styles.main}>
+//       {
+//         show?
+//         <View style={styles.modal}>
+//         <View style={styles.body}>
+//           <Text>Hello Coder</Text>
+//             <Button title='Close' onPress={()=>setShow(false)}></Button>
+//         </View>
+
+//       </View>:
+//       null
+//       }
+//       <Button title='Ope dialog' onPress={()=>setShow(true)}></Button>
+//     </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   main:{
+//     flex:1,
+//     justifyContent:'center'
+//   },
+//   modal:{
+//     flex:1,
+//     backgroundColor:'rgba(50,50,50,0.5)',
+//     justifyContent:'center',
+//     alignItems:'center'
+
+//   },
+//   body:{
+//     backgroundColor:"#fff",
+//     height:300,
+//     width:300,
+//     padding:20,
+//     justifyContent:'flex-end',
+//     borderRadius:10
+//   }
+// })
+
+// V38 React Navigation
+const Stack = createNativeStackNavigator();
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+         screenOptions={{
+          
+          headerStyle: {
+            backgroundColor: 'blue',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontSize: 30,
+          },
+        }}
+      >
+        <Stack.Screen
+          name="Login"
+          component={Login}
+         
+        />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const Home = () => {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{fontSize: 30}}>Home Screen</Text>
     </View>
-  )
-}
+  );
+};
 
-const styles = StyleSheet.create({
-  text:{
-    color:Platform.OS == "ios"?'orange':'blue',
-    fontSize:30
-  }
-})
+const Login = props => {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{fontSize: 30}}>Login Screen</Text>
+      <Button
+        title="Go To  Home Page"
+        onPress={() => props.navigation.navigate('Home')}></Button>
+    </View>
+  );
+};
 
 export default App;
