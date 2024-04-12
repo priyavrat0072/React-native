@@ -20,7 +20,10 @@ import {
 import {WebView} from 'react-native-webview';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'
+// import Home from './components/Home';
+// import Login from './components/Login';
 // import CompanyData from './components/CompanyData';
 // import UserData from './components/UserData';
 // import Exstyles from './style';
@@ -1324,50 +1327,96 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // })
 
 // V38 React Navigation
-const Stack = createNativeStackNavigator();
-const App = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-         screenOptions={{
+// const Stack = createNativeStackNavigator();
+// const App = () => {
+//   const btnAction =()=>{console.warn('btn Press')}
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator
+//          screenOptions={{
           
-          headerStyle: {
-            backgroundColor: 'blue',
-          },
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontSize: 30,
-          },
-        }}
-      >
-        <Stack.Screen
-          name="Login"
-          component={Login}
+//           headerStyle: {
+//             backgroundColor: 'blue',
+//           },
+//           headerTintColor: 'white',
+//           headerTitleStyle: {
+//             fontSize: 30,
+//           },
+//         }}
+//       >
+//         <Stack.Screen
+//         options={{
+//           headerTitle:(props)=><Button title='Left' onPress={btnAction}></Button>,
+//           headerRight:(props)=><Header/>,
+//           title:'User Login',
+//           headerStyle: {
+//             backgroundColor: 'orange',
+//           },
+//           headerTintColor: 'white',
+//           headerTitleStyle: {
+//             fontSize: 30,
+//           },
+//         }}
+//           name="Login"
+//           component={Login}
          
-        />
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+//         />
+//         <Stack.Screen name="Home" component={Home} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// };
 
-const Home = () => {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text style={{fontSize: 30}}>Home Screen</Text>
-    </View>
-  );
-};
+// const Header =()=>{
+//   return(
+//     <Button title='btn'></Button>
+//   )
+// }
 
-const Login = props => {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text style={{fontSize: 30}}>Login Screen</Text>
-      <Button
-        title="Go To  Home Page"
-        onPress={() => props.navigation.navigate('Home')}></Button>
+// V44
+// const Tab = createMaterialTopTabNavigator()
+// const App=()=>{
+//   return(
+    
+//       <NavigationContainer>
+//         <Tab.Navigator>
+//             <Tab.Screen name='Login' component={Login}/>
+//             <Tab.Screen name='SignUp' component={SignUp}/>
+//             <Tab.Screen name='other' component={SignUp}/>
+//         </Tab.Navigator>
+//       </NavigationContainer>
+    
+//   )
+// }
+
+//V45
+// const Login =()=>{
+//   return(
+//     <View>
+//       <Text>
+//         Login
+//       </Text>
+//     </View>
+//   )
+// }
+// const SignUp =()=>{
+//   return(
+//     <View>
+//       <Text>
+//       SignUp
+//       </Text>
+//     </View>
+//   )
+// }
+
+
+//V46 
+const App=()=>{
+  return(
+    <View>
+      <Text>API</Text>
     </View>
-  );
-};
+  )
+}
 
 export default App;
