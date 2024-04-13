@@ -20,8 +20,8 @@ import {
 import {WebView} from 'react-native-webview';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 // import Home from './components/Home';
 // import Login from './components/Login';
 // import CompanyData from './components/CompanyData';
@@ -1334,7 +1334,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //     <NavigationContainer>
 //       <Stack.Navigator
 //          screenOptions={{
-          
+
 //           headerStyle: {
 //             backgroundColor: 'blue',
 //           },
@@ -1359,7 +1359,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //         }}
 //           name="Login"
 //           component={Login}
-         
+
 //         />
 //         <Stack.Screen name="Home" component={Home} />
 //       </Stack.Navigator>
@@ -1377,7 +1377,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 // const Tab = createMaterialTopTabNavigator()
 // const App=()=>{
 //   return(
-    
+
 //       <NavigationContainer>
 //         <Tab.Navigator>
 //             <Tab.Screen name='Login' component={Login}/>
@@ -1385,7 +1385,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //             <Tab.Screen name='other' component={SignUp}/>
 //         </Tab.Navigator>
 //       </NavigationContainer>
-    
+
 //   )
 // }
 
@@ -1409,12 +1409,178 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //   )
 // }
 
+//V46
+// const App = () => {
+//   const[data,setData] = useState()
+//   const getAPIData = async () => {
+    
+//     // api call
+//     // console.warn("api call")
+//     const url = "https://jsonplaceholder.typicode.com/posts/1"
+//     // const url2 = "https://jsonplaceholder.typicode.com/posts"
+//     let result = await fetch(url);
+//     result = await result.json();
+//     setData(result)
+//     console.warn("result : ",result)
+    
+//   };
 
-//V46 
+
+//   useEffect(() => {
+//     getAPIData();
+//   }, []);
+
+//   return (
+//     <View>
+//       <Text>API</Text>
+//       {
+//         data?<View>
+//           <Text style={{fontSize:30}}>{data.id}</Text>
+//           <Text style={{fontSize:30}}>{data.userId}</Text>
+//           <Text style={{fontSize:30}}>{data.title}</Text>
+//           <Text style={{fontSize:30}}>{data.body}</Text>
+
+//         </View>:null
+//       }
+//       {/* {
+//         data.map((item)=><Text>{item.id}</Text>)
+//       } */}
+//     </View>
+//   );
+// };
+
+// V47 Multiple Api
+// const App=()=>{
+
+//   const [data,setData] = useState([]);
+
+//   const getAPIData = async ()=>{
+  
+//     // console.warn("Api data")
+//     //  const url = "https://jsonplaceholder.typicode.com/posts" 
+//      let result = await fetch("https://jsonplaceholder.typicode.com/posts")
+//      result = await result.json()
+//      setData(result)
+//      console.warn(data)
+      
+//    }
+  
+//    useEffect(()=>{
+//     getAPIData()
+//    },[])
+
+//   return(
+//     <View>
+//       <ScrollView>
+//       <Text>Multi Api</Text>
+//       {
+//         data.map((item)=><View style={{padding:10,borderBottomColor:'#ccc',borderBottomWidth:2}}>
+//           <Text style={{fontSize:20,backgroundColor:'skyblue'}}>Id : {item.id}</Text>
+//           <Text style={{fontSize:20,backgroundColor:'pink'}}>Id : {item.title}</Text>
+//           <Text style={{fontSize:20,backgroundColor:'yellow'}}>Id : {item.body}</Text>
+//         </View>)
+//       }
+//       </ScrollView>
+//     </View>
+//   )
+// }
+
+// V48 Flat ListApi
+
+// const App =()=>{
+//   const [data,setData] = useState([])
+
+//   const getApiData = async()=>{
+//       // console.warn("Api data")
+//       const url = "https://jsonplaceholder.typicode.com/posts"
+//       let result  = await fetch(url)
+//       result = await result.json()
+//       setData(result)
+//       // console.warn("result:",data)
+//   }
+//   useEffect(()=>{
+//     getApiData()
+//   },[data])
+//   return(
+//     <View>
+//        <ScrollView>
+//        <Text>Multi Api</Text>
+//         {
+//           <FlatList
+//           data={data}
+//           renderItem={({item})=><View style={{margin:5,borderColor:"black",borderWidth:2}}>
+//             <Text style={{fontSize:30,backgroundColor:'orange',margin:5}}>ID:{item.id}</Text>
+//             <Text style={{fontSize:20,backgroundColor:'skyblue',margin:5}}>ID:{item.title}</Text>
+//             <Text style={{fontSize:10,backgroundColor:'pink',margin:5}}>ID:{item.body}</Text>
+//           </View>}
+
+//           />
+//         }
+//        </ScrollView>
+//      </View>
+//   )
+
+// }
+
+
+// const App =()=>{
+//   const [data,setdata] = useState([])
+//   const getApidata =async()=>{
+//     const url ="http://10.0.2.2:3000/users"
+//     let result = await fetch(url)
+//     result = await result.json()
+//     console.warn(result)
+//     setdata(result)
+//   }
+//   useEffect(()=>{
+//     getApidata()
+//   },[])
+
+//   return(
+//     <View>
+//       <Text>JSON API</Text>
+//       {
+//         data.length?
+//         data.map((item)=>
+//         <View> 
+//           <Text style={{fontSize:30}}>{item.id}</Text>
+//           <Text style={{fontSize:30}}>{item.name}</Text>
+//           <Text style={{fontSize:30}}>{item.email}</Text>
+//           <Text style={{fontSize:30}}>{item.age}</Text>
+//         </View>)
+//         :null
+//       }
+//     </View>
+//   )
+// }
 const App=()=>{
+
+  const saveApiData = async ()=>{
+    console.warn("data Saved")
+    const data={
+      name:'bit',
+      age:20,
+      email:"bit@test.com"
+    }
+    const url = "http://10.0.2.2:3000/users"
+    let result = await fetch(url,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(data)
+    })
+    result = await result.json();
+    console.warn(result)
+  }
+
+
+  useEffect(()=>{
+    saveApiData()
+  },[])
+
   return(
     <View>
-      <Text>API</Text>
+      <Text style={{fontSize:30}}>POST METHOD</Text>
+      <Button title='Save Data' onPress={saveApiData}></Button>
     </View>
   )
 }
