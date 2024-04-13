@@ -1413,7 +1413,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 // const App = () => {
 //   const[data,setData] = useState()
 //   const getAPIData = async () => {
-    
+
 //     // api call
 //     // console.warn("api call")
 //     const url = "https://jsonplaceholder.typicode.com/posts/1"
@@ -1422,9 +1422,8 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //     result = await result.json();
 //     setData(result)
 //     console.warn("result : ",result)
-    
-//   };
 
+//   };
 
 //   useEffect(() => {
 //     getAPIData();
@@ -1455,16 +1454,16 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //   const [data,setData] = useState([]);
 
 //   const getAPIData = async ()=>{
-  
+
 //     // console.warn("Api data")
-//     //  const url = "https://jsonplaceholder.typicode.com/posts" 
+//     //  const url = "https://jsonplaceholder.typicode.com/posts"
 //      let result = await fetch("https://jsonplaceholder.typicode.com/posts")
 //      result = await result.json()
 //      setData(result)
 //      console.warn(data)
-      
+
 //    }
-  
+
 //    useEffect(()=>{
 //     getAPIData()
 //    },[])
@@ -1522,7 +1521,6 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 
 // }
 
-
 // const App =()=>{
 //   const [data,setdata] = useState([])
 //   const getApidata =async()=>{
@@ -1542,7 +1540,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //       {
 //         data.length?
 //         data.map((item)=>
-//         <View> 
+//         <View>
 //           <Text style={{fontSize:30}}>{item.id}</Text>
 //           <Text style={{fontSize:30}}>{item.name}</Text>
 //           <Text style={{fontSize:30}}>{item.email}</Text>
@@ -1553,36 +1551,303 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //     </View>
 //   )
 // }
-const App=()=>{
 
-  const saveApiData = async ()=>{
-    console.warn("data Saved")
-    const data={
-      name:'bit',
-      age:20,
-      email:"bit@test.com"
-    }
-    const url = "http://10.0.2.2:3000/users"
-    let result = await fetch(url,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(data)
-    })
+// V52
+// const App=()=>{
+
+//   const saveApiData = async ()=>{
+//     console.warn("data Saved")
+//     const data={
+//       name:'bit',
+//       age:20,
+//       email:"bit@test.com"
+//     }
+//     const url = "http://10.0.2.2:3000/users"
+//     let result = await fetch(url,{
+//       method:"POST",
+//       headers:{"Content-Type":"application/json"},
+//       body:JSON.stringify(data)
+//     })
+//     result = await result.json();
+//     console.warn(result)
+//   }
+
+//   useEffect(()=>{
+//     saveApiData()
+//   },[])
+
+//   return(
+//     <View>
+//       <Text style={{fontSize:30}}>POST METHOD</Text>
+//       <Button title='Save Data' onPress={saveApiData}></Button>
+//     </View>
+//   )
+// }
+
+// V54
+// const App=()=>{
+
+//   const [name,setName] = useState("")
+//   const [age,setAge] = useState(0)
+//   const [email,setEmail] = useState("")
+
+//   const [nameErr, setNameErr] = useState(false)
+//   const [ageErr, setAgeErr] =  useState(false)
+//   const [emailErr, setEmailErr] =  useState(false)
+
+//   const saveApiData =async()=>{
+//     // console.warn(name,age,email)
+
+//     if(!name){
+//       setNameErr(true)
+//     }else{
+//       setNameErr(false)
+//     }
+
+//     if(!age){
+//       setAgeErr(true)
+//     }else{
+//       setAgeErr(false)
+//     }
+
+//     if(!email){
+//       setEmailErr(true)
+//     }else{
+//       setEmailErr(false)
+//     }
+
+//     if(!name || !age || !email){
+//       return false
+//     }
+
+//     const data={
+//         name:name,
+//         age:age,
+//         email:email
+//     }
+
+//     console.warn("next ")
+
+//     const url = "http://10.0.2.2:3000/users"
+//     let result = await fetch(url ,{
+//       method:"POST",
+//       headers:{"Content-Type":"application/json"},
+//       body:JSON.stringify(data)
+//     })
+
+//   }
+
+//   const clearDdata =()=>{
+//     setName("")
+//     setAge(0)
+//     setEmail("")
+//   }
+
+//   useEffect(()=>{
+//     saveApiData
+//     console.warn("useEffect")
+//   },[])
+
+//   return(
+//     <View style={Styles.main}>
+//       <Text style={Styles.mn}>Form</Text>
+//       <TextInput style={Styles.ti} placeholder='Enter Name'  onChangeText={(text)=>setName(text)} value={name}></TextInput>
+//       {nameErr?<Text style={Styles.err}>Enter Valid Name</Text>:null}
+
+//       <TextInput style={Styles.ti} placeholder='Enter age'   onChangeText={(text)=>setAge(Number(text))} value={age}></TextInput>
+//       {ageErr?<Text style={Styles.err}>Enter Valid Age</Text>:null}
+
+//       <TextInput style={Styles.ti} placeholder='Enter email' onChangeText={(text)=>setEmail(text)} value={email}></TextInput>
+//       {emailErr?<Text style={Styles.err}>Enter Valid Email</Text>:null}
+
+//       <View style={Styles.btn}><Button title='Save Data' onPress={saveApiData}> </Button></View>
+//       <View><Button title='Clear Data' onPress={clearDdata}> </Button></View>
+
+//     </View>
+//   )
+// }
+
+// const Styles = StyleSheet.create({
+//   main:{
+//     flex:1,
+//     backgroundColor:'skyblue',
+//     alignItems:'center',
+//     borderWidth:2,
+//     borderColor:"black",
+//   },
+//   mn:{
+//     fontSize:30,
+//     color:"black",
+//     backgroundColor:"yellow",
+//     margin:10,
+//     padding:5,
+//     borderWidth:2,
+//     borderColor:"black",
+//   },
+//   ti:{
+//     fontSize:20,
+//     color:"blue",
+//     backgroundColor:"pink",
+//     margin:10,
+//     borderWidth:2,
+//     borderColor:"black",
+//     width:300,
+//     padding:5,
+
+//   },
+//   btn:{
+//     margin:10
+//   },
+//   err:{
+//     fontSize:15,
+//     color:"red"
+//   }
+
+// })
+
+const App = () => {
+  const [data, setData] = useState([]);
+  const [showModal, setShowModal] = useState(false)
+  const [selectedUser,setSelectedUser] = useState(undefined)
+
+  const getApiData = async () => {
+    const url = 'http://10.0.2.2:3000/users';
+    let result = await fetch(url);
     result = await result.json();
-    console.warn(result)
+
+    setData(result);
+    
+  };
+
+  const deleteUser = async (id)=>{
+    const url="http://10.0.2.2:3000/users"
+    let result = await fetch(`${url}/${id}`,{
+      method:"DELETE"
+    })
+    result = await result.json()
+    if(result){
+      console.warn("USER deleted")
+      getApiData();
+    }
+  }
+
+  const updateUser =(data)=>{
+    setShowModal(true)
+    setSelectedUser(data)
   }
 
 
+  useEffect(() => {
+    getApiData();
+  }, []);
+
+  return (
+    <View style={{flex:1}}>
+      {data.length?data.map(item => (
+        <View style={styles.main2}>
+          <View style={styles.main}>
+            <Text >{item.name}</Text>
+          </View>
+          <View style={styles.main}>
+            <Text >{item.age}</Text>
+          </View>
+          <View style={styles.main}>
+            <Button title='Delete' onPress={()=>deleteUser(item.id)}></Button>
+          </View>
+          <View style={styles.main}>
+            <Button title='Update' onPress={()=>updateUser(item)}></Button>
+          </View>
+        </View>
+      )):null}
+      <Modal visible={showModal} transparent={true}>
+        <UserModal setShowModal = {setShowModal} selectedUser={selectedUser} getApiData={getApiData}/>
+      </Modal>
+    </View>
+  );
+};
+
+const UserModal=(props)=>{
+  // console.warn(props.selectedUser)
+  const [name,setName] = useState(undefined)
+  const [age,setAge] = useState(undefined)
+  const [email,setEmail] = useState(undefined)
+
   useEffect(()=>{
-    saveApiData()
-  },[])
+    if(props.selectedUser){
+      setName(props.selectedUser.name)
+      setEmail(props.selectedUser.email)
+      setAge(props.selectedUser.age.toString())
+    }
+  },[props.selectedUser])
+
+  const UpdateUser =async()=>{
+    console.warn(name,email,age,props.selectedUser.id)
+    const url="http://10.0.2.2:3000/users"
+    const id = props.selectedUser.id
+    let result = fetch(`${url}/${id}`,{
+      method:"PUT",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name,age,email})
+    })
+    result = (await result).json()
+    if(result){
+      console.warn(result);
+      props.getApiData();
+      props.setShowModal(false)
+    }
+  }
 
   return(
-    <View>
-      <Text style={{fontSize:30}}>POST METHOD</Text>
-      <Button title='Save Data' onPress={saveApiData}></Button>
+    <View style={styles.cenModal}>
+    <View style={styles.inmodal}>
+      <TextInput style={styles.input} value={name} onChangeText={(text)=>setName(text)} placeholder='Enter Name'/>
+      <TextInput style={styles.input} value={email} onChangeText={(text)=>setEmail(text)} placeholder='Enter Email'/>
+      <TextInput style={styles.input} value={age} onChangeText={(text)=>setAge(text)} placeholder='Enter Age'/>
+      <View style={{marginBottom:10}}><Button title='Save' onPress={()=>UpdateUser()}></Button></View>
+      <Button title='Close' onPress={()=>props.setShowModal(false)}></Button>
     </View>
+  </View>
   )
 }
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    margin:2
+  },
+  main2: {
+    
+    flexDirection: 'row',
+    justifyContent:'space-around',
+    backgroundColor:'orange',
+    margin:5,
+    padding:8
+    
+  },
+  cenModal:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  inmodal:{
+    backgroundColor:'skyblue',
+    padding:40,
+    borderRadius:10,
+    shadowColor:'black',
+    shadowOpacity:1,
+    elevation:5
+    
+  },
+  input:{
+    borderWidth:1,
+    borderColor:"yellow",
+    backgroundColor:'pink',
+    width:200,
+    marginBottom:10,
+    fontSize:15
+  }
+});
+
+
 
 export default App;
