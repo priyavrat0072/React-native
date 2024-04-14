@@ -17,6 +17,7 @@ import {
   Platform,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {WebView} from 'react-native-webview';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -1885,37 +1886,69 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 //   );
 // };
 
-const App =()=>{
+// const App =()=>{
 
-  const input =useRef();
+//   const input =useRef();
 
-  const updateInput=()=>{
-    input.current.focus();
-    input.current.setNativeProps({
-      fontSize:24,
-      color:'red'
-    })
-  }
+//   const updateInput=()=>{
+//     input.current.focus();
+//     input.current.setNativeProps({
+//       fontSize:24,
+//       color:'red'
+//     })
+//   }
 
+//   return(
+//     <View style={Styles.container}>
+//       <TextInput ref={input} style={Styles.input} placeholder='Enter Name' />
+//       <TextInput style={Styles.input} placeholder='Enter Email' />
+//       <Button title='Update Input' onPress={updateInput}></Button>
+//     </View>
+//   )
+// }
+
+// const Styles = StyleSheet.create({
+//   container:{
+//     flex:1,
+//     padding:16
+//   },
+//   input:{
+//     borderColor:'skyblue',
+//     borderWidth:2,
+//     margin:10
+//   }
+// })
+
+// V64
+// const App=()=>{
+
+//   const setData =async()=>{
+//     await AsyncStorage.setItem("name","Bittu")
+//   }
+//   const getData =async()=>{
+//     const name = await AsyncStorage.getItem("name")
+//     console.warn(name)
+//   }
+//   const removeData =async()=>{
+//     await AsyncStorage.removeItem("name")
+//   }
+
+//   return(
+//     <View style={{margin:150}}>
+//       <Text style={{fontSize:20}} >Async Storage</Text>
+//       <Button title='Set Data' onPress={setData}></Button>
+//       <Button title='Get Data' onPress={getData}></Button>
+//       <Button title='Remove Data' onPress={removeData}></Button>
+//     </View>
+//   )
+// }
+
+const App=()=>{
   return(
-    <View style={Styles.container}>
-      <TextInput ref={input} style={Styles.input} placeholder='Enter Name' />
-      <TextInput style={Styles.input} placeholder='Enter Email' />
-      <Button title='Update Input' onPress={updateInput}></Button>
+    <View>
+      <Text>Done</Text>
     </View>
   )
 }
-
-const Styles = StyleSheet.create({
-  container:{
-    flex:1,
-    padding:16
-  },
-  input:{
-    borderColor:'skyblue',
-    borderWidth:2,
-    margin:10
-  }
-})
 
 export default App;
