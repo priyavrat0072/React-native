@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   Button,
   Text,
@@ -1705,149 +1705,217 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 
 // })
 
-const App = () => {
-  const [data, setData] = useState([]);
-  const [showModal, setShowModal] = useState(false)
-  const [selectedUser,setSelectedUser] = useState(undefined)
+// const App = () => {
+//   const [data, setData] = useState([]);
+//   const [showModal, setShowModal] = useState(false)
+//   const [selectedUser,setSelectedUser] = useState(undefined)
 
-  const getApiData = async () => {
-    const url = 'http://10.0.2.2:3000/users';
-    let result = await fetch(url);
-    result = await result.json();
+//   const getApiData = async () => {
+//     const url = 'http://10.0.2.2:3000/users';
+//     let result = await fetch(url);
+//     result = await result.json();
 
-    setData(result);
-    
-  };
+//     setData(result);
 
-  const deleteUser = async (id)=>{
-    const url="http://10.0.2.2:3000/users"
-    let result = await fetch(`${url}/${id}`,{
-      method:"DELETE"
+//   };
+
+//   const deleteUser = async (id)=>{
+//     const url="http://10.0.2.2:3000/users"
+//     let result = await fetch(`${url}/${id}`,{
+//       method:"DELETE"
+//     })
+//     result = await result.json()
+//     if(result){
+//       console.warn("USER deleted")
+//       getApiData();
+//     }
+//   }
+
+//   const updateUser =(data)=>{
+//     setShowModal(true)
+//     setSelectedUser(data)
+//   }
+
+//   useEffect(() => {
+//     getApiData();
+//   }, []);
+
+//   return (
+//     <View style={{flex:1}}>
+//       {data.length?data.map(item => (
+//         <View style={styles.main2}>
+//           <View style={styles.main}>
+//             <Text >{item.name}</Text>
+//           </View>
+//           <View style={styles.main}>
+//             <Text >{item.age}</Text>
+//           </View>
+//           <View style={styles.main}>
+//             <Button title='Delete' onPress={()=>deleteUser(item.id)}></Button>
+//           </View>
+//           <View style={styles.main}>
+//             <Button title='Update' onPress={()=>updateUser(item)}></Button>
+//           </View>
+//         </View>
+//       )):null}
+//       <Modal visible={showModal} transparent={true}>
+//         <UserModal setShowModal = {setShowModal} selectedUser={selectedUser} getApiData={getApiData}/>
+//       </Modal>
+//     </View>
+//   );
+// };
+
+// const UserModal=(props)=>{
+//   // console.warn(props.selectedUser)
+//   const [name,setName] = useState(undefined)
+//   const [age,setAge] = useState(undefined)
+//   const [email,setEmail] = useState(undefined)
+
+//   useEffect(()=>{
+//     if(props.selectedUser){
+//       setName(props.selectedUser.name)
+//       setEmail(props.selectedUser.email)
+//       setAge(props.selectedUser.age.toString())
+//     }
+//   },[props.selectedUser])
+
+//   const UpdateUser =async()=>{
+//     console.warn(name,email,age,props.selectedUser.id)
+//     const url="http://10.0.2.2:3000/users"
+//     const id = props.selectedUser.id
+//     let result = fetch(`${url}/${id}`,{
+//       method:"PUT",
+//       headers:{"Content-Type":"application/json"},
+//       body:JSON.stringify({name,age,email})
+//     })
+//     result = (await result).json()
+//     if(result){
+//       console.warn(result);
+//       props.getApiData();
+//       props.setShowModal(false)
+//     }
+//   }
+
+//   return(
+//     <View style={styles.cenModal}>
+//     <View style={styles.inmodal}>
+//       <TextInput style={styles.input} value={name} onChangeText={(text)=>setName(text)} placeholder='Enter Name'/>
+//       <TextInput style={styles.input} value={email} onChangeText={(text)=>setEmail(text)} placeholder='Enter Email'/>
+//       <TextInput style={styles.input} value={age} onChangeText={(text)=>setAge(text)} placeholder='Enter Age'/>
+//       <View style={{marginBottom:10}}><Button title='Save' onPress={()=>UpdateUser()}></Button></View>
+//       <Button title='Close' onPress={()=>props.setShowModal(false)}></Button>
+//     </View>
+//   </View>
+//   )
+// }
+
+// const styles = StyleSheet.create({
+//   main: {
+//     flex: 1,
+//     margin:2
+//   },
+//   main2: {
+
+//     flexDirection: 'row',
+//     justifyContent:'space-around',
+//     backgroundColor:'orange',
+//     margin:5,
+//     padding:8
+
+//   },
+//   cenModal:{
+//     flex:1,
+//     justifyContent:'center',
+//     alignItems:'center'
+//   },
+//   inmodal:{
+//     backgroundColor:'skyblue',
+//     padding:40,
+//     borderRadius:10,
+//     shadowColor:'black',
+//     shadowOpacity:1,
+//     elevation:5
+
+//   },
+//   input:{
+//     borderWidth:1,
+//     borderColor:"yellow",
+//     backgroundColor:'pink',
+//     width:200,
+//     marginBottom:10,
+//     fontSize:15
+//   }
+// });
+
+// const App = () => {
+//   const [data, setData] = useState([]);
+
+//   const searchUser = async text => {
+//     // console.warn(text)
+//     const url = `http://10.0.2.2:3000/users?q=${text}`;
+//     let result = await fetch(url)
+//     // await fetch(`${url}?q=${text}`);
+//     result = await result.json();
+//     console.warn(result);
+//   };
+
+//   return (
+//     <View style={{flex: 1}}>
+//       <TextInput
+//         style={{
+//           borderColor: 'skyblue',
+//           borderWidth: 1,
+//           margin: 15,
+//           fontSize: 20,
+//         }}
+//         placeholder="Search"
+//         onChangeText={text => searchUser(text)}
+//       />
+//       {
+//         data.length?
+//         data.map((item)=>
+//           <View>
+//             <Text>{item.name}</Text>
+//             <Text>{item.age}</Text>
+//             <Text>{item.email}</Text>
+//             </View>
+//         ):null
+//       }
+//     </View>
+//   );
+// };
+
+const App =()=>{
+
+  const input =useRef();
+
+  const updateInput=()=>{
+    input.current.focus();
+    input.current.setNativeProps({
+      fontSize:24,
+      color:'red'
     })
-    result = await result.json()
-    if(result){
-      console.warn("USER deleted")
-      getApiData();
-    }
-  }
-
-  const updateUser =(data)=>{
-    setShowModal(true)
-    setSelectedUser(data)
-  }
-
-
-  useEffect(() => {
-    getApiData();
-  }, []);
-
-  return (
-    <View style={{flex:1}}>
-      {data.length?data.map(item => (
-        <View style={styles.main2}>
-          <View style={styles.main}>
-            <Text >{item.name}</Text>
-          </View>
-          <View style={styles.main}>
-            <Text >{item.age}</Text>
-          </View>
-          <View style={styles.main}>
-            <Button title='Delete' onPress={()=>deleteUser(item.id)}></Button>
-          </View>
-          <View style={styles.main}>
-            <Button title='Update' onPress={()=>updateUser(item)}></Button>
-          </View>
-        </View>
-      )):null}
-      <Modal visible={showModal} transparent={true}>
-        <UserModal setShowModal = {setShowModal} selectedUser={selectedUser} getApiData={getApiData}/>
-      </Modal>
-    </View>
-  );
-};
-
-const UserModal=(props)=>{
-  // console.warn(props.selectedUser)
-  const [name,setName] = useState(undefined)
-  const [age,setAge] = useState(undefined)
-  const [email,setEmail] = useState(undefined)
-
-  useEffect(()=>{
-    if(props.selectedUser){
-      setName(props.selectedUser.name)
-      setEmail(props.selectedUser.email)
-      setAge(props.selectedUser.age.toString())
-    }
-  },[props.selectedUser])
-
-  const UpdateUser =async()=>{
-    console.warn(name,email,age,props.selectedUser.id)
-    const url="http://10.0.2.2:3000/users"
-    const id = props.selectedUser.id
-    let result = fetch(`${url}/${id}`,{
-      method:"PUT",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({name,age,email})
-    })
-    result = (await result).json()
-    if(result){
-      console.warn(result);
-      props.getApiData();
-      props.setShowModal(false)
-    }
   }
 
   return(
-    <View style={styles.cenModal}>
-    <View style={styles.inmodal}>
-      <TextInput style={styles.input} value={name} onChangeText={(text)=>setName(text)} placeholder='Enter Name'/>
-      <TextInput style={styles.input} value={email} onChangeText={(text)=>setEmail(text)} placeholder='Enter Email'/>
-      <TextInput style={styles.input} value={age} onChangeText={(text)=>setAge(text)} placeholder='Enter Age'/>
-      <View style={{marginBottom:10}}><Button title='Save' onPress={()=>UpdateUser()}></Button></View>
-      <Button title='Close' onPress={()=>props.setShowModal(false)}></Button>
+    <View style={Styles.container}>
+      <TextInput ref={input} style={Styles.input} placeholder='Enter Name' />
+      <TextInput style={Styles.input} placeholder='Enter Email' />
+      <Button title='Update Input' onPress={updateInput}></Button>
     </View>
-  </View>
   )
 }
 
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    margin:2
-  },
-  main2: {
-    
-    flexDirection: 'row',
-    justifyContent:'space-around',
-    backgroundColor:'orange',
-    margin:5,
-    padding:8
-    
-  },
-  cenModal:{
+const Styles = StyleSheet.create({
+  container:{
     flex:1,
-    justifyContent:'center',
-    alignItems:'center'
-  },
-  inmodal:{
-    backgroundColor:'skyblue',
-    padding:40,
-    borderRadius:10,
-    shadowColor:'black',
-    shadowOpacity:1,
-    elevation:5
-    
+    padding:16
   },
   input:{
-    borderWidth:1,
-    borderColor:"yellow",
-    backgroundColor:'pink',
-    width:200,
-    marginBottom:10,
-    fontSize:15
+    borderColor:'skyblue',
+    borderWidth:2,
+    margin:10
   }
-});
-
-
+})
 
 export default App;
